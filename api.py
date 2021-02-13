@@ -156,7 +156,7 @@ def sales_data(starting, ending, unit):
         formatter = "m"
     else:
         return jsonify(
-            {"error": "/shipt/api/v1/data/<starting:yyyymmdd>/<ending:yyyymmdd>/<unit:['day','week','month']>"}
+            {"error": "/api/v1/data/<starting:yyyymmdd>/<ending:yyyymmdd>/<unit:['day','week','month']>"}
         )
 
     intervals = {}
