@@ -40,18 +40,18 @@ python3 -m unittest
 ```
 
 ## Endpoints
-### GET products sold by date range and increment: `/shipt/api/v1/data/<starting>/<ending>/<unit>`
+### GET products sold by date range and increment: `/api/v1/data/<starting>/<ending>/<unit>`
 starting date: `yyyymmdd`  
 ending date: `yyyymmdd`  
 unit: `day`, `week`, or `month`
 
 Will return product sales by day, week, or month in the range given
 
-### GET customer sales history `/shipt/api/v1/history/<customer_id>`
+### GET customer sales history `/api/v1/history/<customer_id>`
 
 Returns sales history by customer id
 
-### POST new order `/shipt/api/v1/purchase`
+### POST new order `/api/v1/purchase`
 Required JSON keys:
 - `customer` = new customer name (string) `"Joe"` or existing id (int) `1`
 - `products` = `{"<product id>": <quantity>, "<product_id>": <quantity>, ...}`
