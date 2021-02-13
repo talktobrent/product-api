@@ -8,7 +8,7 @@ class TestCustomerHistory(TestCase):
 
     def test_customer_history(self):
         with app.test_client() as api:
-            response = api.get('/shipt/api/v1/history/1')
+            response = api.get('/api/v1/history/1')
             json_data = response.get_json()
             test = {
                 "1": [
@@ -21,14 +21,14 @@ class TestCustomerHistory(TestCase):
 
     def test_customer_history_customer_not_exists(self):
         with app.test_client() as api:
-            response = api.get('/shipt/api/v1/history/9')
+            response = api.get('/api/v1/history/9')
             json_data = response.get_json()
             test = {"9": "no orders!"}
             self.assertDictEqual(test, json_data)
 
     def test_customer_history_no_history(self):
         with app.test_client() as api:
-            response = api.get('/shipt/api/v1/history/3')
+            response = api.get('/api/v1/history/3')
             json_data = response.get_json()
             test = {"3": "no orders!"}
             self.assertDictEqual(test, json_data)
@@ -38,7 +38,7 @@ class TestZCustomerPurchase(TestCase):
 
     def test_0_customer_purchase_new_customer(self):
         with app.test_client() as api:
-            response = api.post('/shipt/api/v1/purchase', json={"customer": "brent", "products": {"2": 1}})
+            response = api.post('/api/v1/purchase', json={"customer": "brent", "products": {"2": 1}})
             json_data = response.get_json()
             test = {
                 "customer_id": 4,
@@ -49,7 +49,7 @@ class TestZCustomerPurchase(TestCase):
 
     def test_1_customer_purchase_existing_customer(self):
         with app.test_client() as api:
-            response = api.post('/shipt/api/v1/purchase', json={"customer": 3, "products": {"2": 1}})
+            response = api.post('/api/v1/purchase', json={"customer": 3, "products": {"2": 1}})
             json_data = response.get_json()
             test = {
                 "customer_id": 3,
@@ -60,21 +60,21 @@ class TestZCustomerPurchase(TestCase):
 
     def test_2_customer_purchase_given_customer_not_exists(self):
         with app.test_client() as api:
-            response = api.post('/shipt/api/v1/purchase', json={"customer": 9, "products": {"2": 1}})
+            response = api.post('/api/v1/purchase', json={"customer": 9, "products": {"2": 1}})
             json_data = response.get_json()
             test = {"error": "need valid customer id"}
             self.assertDictEqual(test, json_data)
 
     def test_3_customer_purchase_product_not_exist(self):
         with app.test_client() as api:
-            response = api.post('/shipt/api/v1/purchase', json={"customer": 3, "products": {"50": 1}})
+            response = api.post('/api/v1/purchase', json={"customer": 3, "products": {"50": 1}})
             json_data = response.get_json()
             test = {"error": "need valid products and volumes"}
             self.assertDictEqual(test, json_data)
 
     def test_customer_purchase_bad_weight(self):
         with app.test_client() as api:
-            response = api.post('/shipt/api/v1/purchase', json={"customer": 3, "products": {"2": "hhh"}})
+            response = api.post('/api/v1/purchase', json={"customer": 3, "products": {"2": "hhh"}})
             json_data = response.get_json()
             test = {"error": "need valid products and volumes"}
             self.assertDictEqual(test, json_data)
@@ -83,16 +83,16 @@ class TestSalesData(TestCase):
 
     def test_sales_data_bad_unit(self):
         with app.test_client() as api:
-            response = api.get('/shipt/api/v1/data/20200101/20201125/bad')
+            response = api.get('/api/v1/data/20200101/20201125/bad')
             json_data = response.get_json()
             test = {
-                "error": "/shipt/api/v1/data/<starting:yyyymmdd>/<ending:yyyymmdd>/<unit:['day','week','month']>"
+                "error": "/api/v1/data/<starting:yyyymmdd>/<ending:yyyymmdd>/<unit:['day','week','month']>"
             }
             self.assertDictEqual(test, json_data)
 
     def test_sales_data_week(self):
         with app.test_client() as api:
-            response = api.get('/shipt/api/v1/data/20200101/20201225/week')
+            response = api.get('/api/v1/data/20200101/20201225/week')
             json_data = response.get_json()
             test = {
                 "week": {
@@ -113,7 +113,7 @@ class TestSalesData(TestCase):
 
     def test_sales_data_day(self):
         with app.test_client() as api:
-            response = api.get('/shipt/api/v1/data/20200101/20201125/day')
+            response = api.get('/api/v1/data/20200101/20201125/day')
             json_data = response.get_json()
             test = {
                 "day": {
@@ -139,7 +139,7 @@ class TestSalesData(TestCase):
 
     def test_sales_data_month(self):
         with app.test_client() as api:
-            response = api.get('/shipt/api/v1/data/20200101/20201225/month')
+            response = api.get('/api/v1/data/20200101/20201225/month')
             json_data = response.get_json()
             test = {
                 "month": {
