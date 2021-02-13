@@ -31,7 +31,7 @@ python-dateutil
 ```
 Change directory to project root (location of this README), then run and enter port:
 ```
-python3 shipt <port_number>
+python3 product-api <port_number>
 ```
 
 Test: change directory to project root (location of this README):
