@@ -4,10 +4,7 @@ made up of products. You are expected to query this API using a RESTful interfac
 Product names are not expected to be unique.
 Please do not use ORM functionality in your submission.
 All endpoints should return data in JSON format.
-## Author
-Brent Janski  
-[janskibf@gmail.com](mailto:janskibf@gmail.com)  
-November, 2020
+
 ## Tasks
 Please implement the following features:
 1. A product belongs to many categories. A category has many products. A product
