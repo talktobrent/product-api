@@ -21,7 +21,7 @@ cursor.execute("PRAGMA foreign_keys = ON")
 
 app = Flask(__name__)
 
-@app.route('/shipt/api/v1/history/<int:customer_id>', methods=['GET'])
+@app.route('/api/v1/history/<int:customer_id>', methods=['GET'])
 def customer_history(customer_id):
     """
     An API endpoint that returns all orders for a customer sorted by date.
@@ -75,7 +75,7 @@ def customer_history(customer_id):
 
     return jsonify({str(customer_id): orders_list})
 
-@app.route('/shipt/api/v1/purchase', methods=['POST'])
+@app.route('/api/v1/purchase', methods=['POST'])
 def customer_purchase():
     """
     An API endpoint to create an Order for a Customer where input products can be
@@ -129,7 +129,7 @@ def customer_purchase():
 
     return jsonify({"order": order_id, "purchase": purchase, "customer_id": customer_id})
 
-@app.route('/shipt/api/v1/data/<starting>/<ending>/<unit>', methods=['GET'])
+@app.route('/api/v1/data/<starting>/<ending>/<unit>', methods=['GET'])
 def sales_data(starting, ending, unit):
     """
     An API endpoint that accepts a date range and a day, week, or month and
