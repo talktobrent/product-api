@@ -1,5 +1,5 @@
 from unittest import TestCase
-from shipt.api import app
+from api import app
 
 """ Running these tests individually may result in failures, as some tests are dependent on the state of the database,
 which is modified by some tests """
